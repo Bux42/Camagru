@@ -4,7 +4,7 @@
     <label>Password:</label><br>
     <input type="password" id="password" name="password" value="hello" required><br>
     <br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Login">
 </form>
 <div class="login_error">
     <?php 

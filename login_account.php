@@ -22,7 +22,8 @@ function loginAccount() {
     if (($query = $stmt->fetch())) {
         if (password_verify($_POST["password"], $query["password"])) {
             $_SESSION["user"] = $_POST["username"];
-           
+            $_SESSION["user_id"] = $query["id"];
+            $_SESSION["user_mail"] = $query["email"];
         } else {
             array_push($_SESSION["login_error"], "Wrong password");
         }

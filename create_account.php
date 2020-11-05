@@ -72,7 +72,7 @@ function createAccount() {
     </head>
     <body>
     <p>Camagru email verification</p>
-    <a href="http://localhost/verify_mail?key='.$hashed_pass.'&username='.$_POST["username"].'">Click this link to verify your mail</a>
+    <a href="http://localhost/verify_mail?key='.$mail_url.'&username='.$_POST["username"].'">Click this link to verify your mail</a>
     </body>
     </html>';
 
