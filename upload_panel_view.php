@@ -26,10 +26,16 @@ if (isset($_SESSION["upload_result"])) {
     <button id="takePictureButton" disabled onclick="takePicture();">Take Picture</button>
 </div>
 <canvas id="canvas" width="500" height="375" style="display:none;"></canvas>
+
+<form action="/upload_picture.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
 <form action="/upload_picture.php" method="post">
     <input id="formImage" name="image" type="hidden">
     <input id="overlay_id" name="overlay_id" type="hidden">
-    
 </form>
 <div class="user_images">
     <?php

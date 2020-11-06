@@ -13,7 +13,6 @@
     include "top_menu.php";
     ?>
     <div class="main">
-        <div id="test">scroll to understand</div>
         <div id="wrapper" style="height: 800px; overflow: auto;">
         <div id="content"></div>
     </div>
@@ -22,34 +21,30 @@
     ?>
 <script language="JavaScript">
     var index = -1;
+    var loadingIndex = -2;
     function loadImages() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var result = JSON.parse(this.responseText);
                 index = result.index;
-                console.log("NewIndex: " + index);
                 var html = "";
-
                 result.images.forEach(image => {
-                    //console.log(image);
-                    html += "<img src='" + image.base64_img + "'>";
+                    html += "<div class='img_holder'><img src='" + image.base64_img + "'></div>";
                 });
-                console.log(html);
                 document.getElementById("content").innerHTML += html;
             }
         };
-        xhttp.open("GET", "get_home_images.php?index=" + index, true);
-        console.log("GetIndex: " + index);
-        xhttp.send();
+        if (loadingIndex != index) {
+            loadingIndex = index;
+            console.log("GetIndex: " + index);
+            xhttp.open("GET", "get_home_images.php?index=" + index, true);
+            xhttp.send();
+        }
     }
   // we will add this content, replace for anything you want to add
-  var more = '<div style="height: 1000px; background: #EEE;"></div>';
-
   var wrapper = document.getElementById("wrapper");
   var content = document.getElementById("content");
-  var test = document.getElementById("test");
-  //content.innerHTML = more;
 
   function addEvent(obj,ev,fn) {
     if(obj.addEventListener) {
@@ -61,7 +56,6 @@
   }
 
   function scroller() {
-    test.innerHTML = wrapper.scrollTop+"+"+wrapper.offsetHeight+"+100>"+content.offsetHeight;
     if(wrapper.scrollTop+wrapper.offsetHeight + 100 > content.offsetHeight) {
       loadImages();
     }

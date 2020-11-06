@@ -16,7 +16,7 @@ if (isset($_SESSION["user_id"])) {
     </body>
     </html>';
 
-    $headers = "From: Camagru@camagru.com \r\n";
+    $headers = "From: camagru@localhost.com \r\n";
  	$headers .= "MIME-Version: 1.0\r\n";
  	$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
