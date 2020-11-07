@@ -30,7 +30,7 @@
                 index = result.index;
                 var html = "";
                 result.images.forEach(image => {
-                    html += "<div class='img_holder'><img src='" + image.base64_img + "'></div>";
+                    html += "<div class='img_holder'><a href='/public_upload.php?img_id=" + image.id + "'><img src='" + image.base64_img + "'></a></div>";
                 });
                 document.getElementById("content").innerHTML += html;
             }

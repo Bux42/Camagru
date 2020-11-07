@@ -4,7 +4,7 @@ session_start();
 include "database/mysql_connect.php";
 
 $_SESSION["upload_result"] = "Could not upload, invalid inputs";
-
+/*
 if (isset($_POST["submit"]) && isset($_POST["overlay_id"]) && strlen($_POST["overlay_id"] > 0)) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
@@ -30,7 +30,7 @@ if (isset($_POST["submit"]) && isset($_POST["overlay_id"]) && strlen($_POST["ove
 }
 print_r($_POST);
 exit();
-
+*/
 if (isset($_POST["image"]) && isset($_POST["overlay_id"]) && strlen($_POST["overlay_id"] > 0))
 {
     if (substr($_POST["image"], 0, 22) === "data:image/png;base64,")

@@ -16,3 +16,6 @@
             }
         ?>
 </div>
+<div>
+    <a href="/forgot_password.php">Forgot password</a>
+</div>

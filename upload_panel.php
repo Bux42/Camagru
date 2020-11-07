@@ -17,7 +17,11 @@
         if (!isset($_SESSION["user"])) {
             include "login_required.php";
         } else {
-            include "upload_panel_view.php";
+            if (isset($_GET["upload_mode"]) && $_GET["upload_mode"] === "file") {
+                include "upload_file_panel_view.php";
+            } else {
+                include "upload_panel_view.php";
+            }
         }
         ?>
     </div>
@@ -27,11 +31,34 @@
 </body>
 <script>
 var overlayId = -1;
+function draw(ev) {
+    console.log(ev);
+    var ctx = document.getElementById('canvas').getContext('2d'),
+        img = new Image(),
+        f = document.getElementById("uploadimage").files[0],
+        url = window.URL || window.webkitURL,
+        src = url.createObjectURL(f);
+
+    img.src = src;
+    img.onload = function() {
+        ctx.drawImage(img, 0, 0);
+        url.revokeObjectURL(src);
+    }
+}
+
+document.getElementById("uploadimage").addEventListener("change", draw, false)
 function takePicture() {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var video = document.getElementById('videoElement');
     context.drawImage(video, 0, 0, 500, 375);
+    document.getElementById("formImage").value = canvas.toDataURL('image/png');
+    document.getElementById("overlay_id").value = overlayId;
+    //console.log(canvas.toDataURL());
+    document.forms[0].submit();
+}
+function takePictureFile() {
+    var canvas = document.getElementById('canvas');
     document.getElementById("formImage").value = canvas.toDataURL('image/png');
     document.getElementById("overlay_id").value = overlayId;
     //console.log(canvas.toDataURL());

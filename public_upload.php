@@ -45,6 +45,15 @@
         <div>
             Uploaded <?php echo $time; ?> by <?php echo $user_query["username"] ?>
         </div>
+        <div>
+            <?php
+                if (isset($img_query) && isset($_SESSION["user_id"])) {
+                    if ($img_query["user_id"] === $_SESSION["user_id"]) {
+                        echo "delete";
+                    }
+                }
+            ?>
+        </div>
     </div>
     <?php
     include "footer.php";

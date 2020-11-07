@@ -2,7 +2,7 @@
 </div>
 <div id="container">
     <div class="box">
-        <video autoplay="true" id="videoElement"></video>
+        <canvas id="canvas" width="500" height="375"></canvas>
     </div>
     <div class="box stack-top"><img id="image_overlay" src=""></div>
 </div>
@@ -23,10 +23,14 @@ if (isset($_SESSION["upload_result"])) {
     ?>
 </div>
 <div>
-    <button id="takePictureButton" disabled onclick="takePicture();">Take Picture</button>
+    <button id="takePictureButton" disabled onclick="takePictureFile();">Take Picture</button>
 </div>
-<canvas id="canvas" width="500" height="375" style="display:none;"></canvas>
-<a href="/upload_panel.php?upload_mode=file">Upload picture</a>
+<div>
+    <a href="/upload_panel.php">Camera mode</a>
+</div>
+<div>
+    <input type='file' name='img'  id='uploadimage' />
+</div>
 
 <form action="/upload_picture.php" method="post">
     <input id="formImage" name="image" type="hidden">
